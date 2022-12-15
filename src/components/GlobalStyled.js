@@ -49,8 +49,13 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+	margin: 70px 0px;
 	*{
 		font-family: 'Lexend Deca', sans-serif;
 	}
+
+*{
+	text-decoration: none;
+}
 }
 `

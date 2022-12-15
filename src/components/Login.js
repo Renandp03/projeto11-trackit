@@ -8,7 +8,7 @@ export default function Login(){
         <img src="assets/TrackIt.png" alt=""/>
         <input type="text" placeholder="email"/>
         <input type="text" placeholder="senha"/>
-        <button>Entrar</button>
+        <Link to="/habitos"><button>Entrar</button></Link>
         <Link to="/cadastro"><div>Não tem uma conta? Cadastre-se!</div></Link>
         </Screen>
     )
@@ -21,7 +21,7 @@ const Screen = styled.div`
     align-items: center;
     img{
         width: 180px;
-        margin: 68px 0px 34px 0px;
+        margin-bottom: 34px;
     }
     input{
         width: 303px;
@@ -33,7 +33,7 @@ const Screen = styled.div`
         font-size: 20px;
     }
     input::placeholder{
-        margin-right: 11px;
+        margin: 0px 11px;
     }
 
     button{
