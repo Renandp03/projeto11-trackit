@@ -14,6 +14,7 @@ export default function Navbar(){
 }
 
 const NavStyled = styled.div`
+    z-index: 1;
     position: fixed;
     top: 0px;
     left: 0px;

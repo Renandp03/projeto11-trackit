@@ -1,5 +1,7 @@
 import Navbar from "./Navbar"
 import styled from "styled-components"
+import CreateHabit from "./CreateHabit"
+import Habit from "./Habit"
 
 export default function Habits(){
     return(
@@ -9,6 +11,13 @@ export default function Habits(){
             <Title>Meus hábitos<button>+</button></Title>
             <p>Você não tem nenhum hábito cadastrado ainda. 
                 Adicione um hábito para começar a trackear!</p>
+            <Habit/>
+            <Habit/>
+            <Habit/>
+            <Habit/>
+            <Habit/>
+            <Habit/>
+                
             </Screen>
         </>
         )
@@ -16,15 +25,14 @@ export default function Habits(){
 
 
 const Title = styled.div`
-    margin: 28px;
+    margin: 28px 0px;
     font-size: 23px;
     color: #126BA5;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 400px;
     button{
-        margin-left: 154px;
+       
         font-weight: 700;
         width: 40px;
         height: 35px;
@@ -36,23 +44,16 @@ const Title = styled.div`
 `
 
 const Screen = styled.div`
-    max-width: 400px;
+    width: 340px;
     display: flex;
     flex-direction: column;
     p{
         font-size: 18px;
         line-height: 22.5px;
         color: #666;
+        margin-bottom: 20px;
     }
 `
 
 
-function CreateHabit(){
-    return(
-    <>
-
-
-    </>
-    )
-}
 

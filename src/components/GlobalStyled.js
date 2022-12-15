@@ -50,6 +50,7 @@ body{
     flex-direction: column;
     align-items: center;
 	margin: 70px 0px;
+	background-color: #f2f2f2;
 	*{
 		font-family: 'Lexend Deca', sans-serif;
 	}

@@ -33,9 +33,10 @@ const Screen = styled.div`
         margin: 3px;
         color: #666666;
         font-size: 20px;
+        padding: 0px 11px;
     }
     input::placeholder{
-        margin-right: 11px;
+        
     }
 
     button{
