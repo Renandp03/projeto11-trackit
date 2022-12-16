@@ -3,6 +3,7 @@ import GlobalStyled from "./components/GlobalStyled";
 import Login from "./components/Login";
 import Registration from "./components/Registration"
 import Habits from "./components/Habits"
+import HabitsToday from "./components/HabitsToday";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="/cadastro" element={<Registration/>}/>
         <Route path="/habitos" element={<Habits/>}/>
+        <Route path="/hoje" element={<HabitsToday/>}/>
       </Routes>
     </BrowserRouter>
   </>
