@@ -24,9 +24,9 @@ export default function Login(props){
         })
         request.then(response => {
             setInfos(response.data)
-            console.log(response.data)
             navigate("/hoje")
         })
+        request.catch(error => alert(error))
     }
 
 
