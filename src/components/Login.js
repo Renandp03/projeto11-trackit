@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 
-export default function Login(){
+export default function Login(props){
 
+    const {setInfos} = props
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -21,7 +22,11 @@ export default function Login(){
             email:email,
             password:password
         })
-        request.then(()=>navigate("/hoje"))
+        request.then(response => {
+            setInfos(response.data)
+            console.log(response.data)
+            navigate("/hoje")
+        })
     }
 
 

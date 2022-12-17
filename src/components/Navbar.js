@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
-export default function Navbar(){
+export default function Navbar(props){
+    const { infos } = props
     return(
         <NavStyled>
             <div>
                 <Link to="/"><Logo src="assets/TrackItLogo.png" alt="logo"/></Link>
-                <Perfil src="assets/TrackItPerfil.png"/>
+                <Perfil src={infos!= undefined ? infos.image : "assets/TrackItPerfil.png"}/>
             </div>
         </NavStyled>
     )

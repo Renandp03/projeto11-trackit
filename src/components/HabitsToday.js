@@ -2,10 +2,12 @@ import styled from "styled-components"
 import Navbar from "./Navbar"
 
 
-export default function HabitsToday(){
+export default function HabitsToday(props){
+
+    const { infos } = props
     return(
         <>
-        <Navbar/>
+        <Navbar infos={infos}/>
         <Title>
             <h1>Segunda, 17/05</h1>
             <h2>Nenhum hábito concluído ainda</h2>
