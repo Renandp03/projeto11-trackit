@@ -10,7 +10,7 @@ export default function HabitsToday(props){
 
 
     const token = infos.token
-    console.log(token)
+
 
     const [ result, setResult] = useState()
 
@@ -20,10 +20,6 @@ export default function HabitsToday(props){
           headers: {"Authorization": `Bearer ${token}`}
         }).then(res => res.json()).then(json => setResult(json));
       },[]);
-
-
-      console.log(result)
-
 
 
       if(result!== undefined){
@@ -70,13 +66,54 @@ export default function HabitsToday(props){
 function Habit(props){
 
     const {data} = props
-    const HabitStyle = styled.div`
+    
+ 
+
+    return(
+        <>
+        <HabitStyle>
+            <div>
+                <h1>{data.name}</h1>
+                <p>Sequência atual: {data.currentSequence}</p>
+                <p>Seu récord: {data.highestSequence}</p>
+            </div>
+            <DoneButton>
+                <img src="assets/ok.svg" />
+            </DoneButton>
+        </HabitStyle>
+        </>
+    )
+
+
+
+
+}
+
+   const DoneButton = styled.div`
+    width: 69px;
+    height: 69px;
+    border-radius: 5px;
+    background-color: #E7E7E7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 13px;
+`
+
+
+
+
+
+const HabitStyle = styled.div`
     display: flex;
     width: 340px;
     height: 94px;
     background: #FFFFFF;
     border-radius: 5px;
     position: relative;
+    margin-bottom: 10px;
     div{
         
         margin: 13px 0px 17px 15px;
@@ -93,39 +130,6 @@ function Habit(props){
         line-height: 16px;
     }
 `
-    const DoneButton = styled.div`
-    width: 69px;
-    height: 69px;
-    border-radius: 5px;
-    background-color: #E7E7E7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0px;
-    right: 13px;
-`
-
-    return(
-        <>
-        <HabitStyle>
-            <div>
-                <h1>{data.name}</h1>
-                <p>{data.currentSequence}</p>
-                <p>{data.highestSequence}</p>
-            </div>
-            <DoneButton>
-                <img src="assets/ok.svg" />
-            </DoneButton>
-        </HabitStyle>
-        </>
-    )
-
-
-
-
-}
-
 const Screen = styled.div`
     max-width: 400px;
 `

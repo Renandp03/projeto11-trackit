@@ -1,22 +1,64 @@
 import styled from "styled-components";
+import axios from "axios";
+import { useEffect } from "react";
 
-export default function Habit(){
+export default function Habit(props){
+
+    const {token, id, data} = props
+
+    const name = data.name
+    const days = data.days
+    console.log(data)
+
+    const weekDays = [
+        {day:"D",id:7},
+        {day:"S",id:1},
+        {day:"T",id:2},
+        {day:"Q",id:3},
+        {day:"Q",id:4},
+        {day:"S",id:5},
+        {day:"S",id:6}
+    ]
+
+   
+
+
+    function deletHabit(){
+       
+        const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+     
+
+        const config = { 
+                headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+
+        const request = axios.delete(url,data,{config})
+        request.then(()=> console.log("sucesso"))
+        request.catch(error => alert(error.response.statusText))
+    }
+
+
+
     return(
         <HabitStyle>
-            <h1>Ler 1 capítulo de livro</h1>
-            <img src="assets/trash.svg"/>
+            <h1>{name}</h1>
+            <img onClick={deletHabit} src="assets/trash.svg"/>
             <DayButtons>
-                <DayButton>D</DayButton>
-                <DayButton>S</DayButton>
-                <DayButton>T</DayButton>
-                <DayButton>Q</DayButton>
-                <DayButton>Q</DayButton>
-                <DayButton>S</DayButton>
-                <DayButton>S</DayButton>
+                {weekDays.map((d)=> <DayButton key={d.id} s={days.includes(d.id) && true}>{d.day}</DayButton>)}
             </DayButtons>
         </HabitStyle>
     )
 }
+
+
+
+
+
+
+
 
 const HabitStyle = styled.div`
     position: relative;
@@ -46,11 +88,11 @@ const DayButtons = styled.div`
 `
 
 const DayButton = styled.button`
-        color: #DBDBDB;
+        color: ${props => props.s ? "white" : "#DBDBDB"};
         width:30px ;
         height:30px ;
         border: 1px solid #D4D4D4;
         border-radius: 5px;
-        background-color: white;
+        background-color: ${props => props.s ? "#CFCFCF" : "white"};
         margin: 0px 2px;
 `

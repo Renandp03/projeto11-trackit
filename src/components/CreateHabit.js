@@ -24,6 +24,9 @@ export default function CreateHabit(props){
     function AddHabit(){
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
+        const dados = {name:name,days:daysSelec}
+
+
         const config = {
             headers:{
                 Authorization: `Bearer ${token}`
@@ -32,12 +35,8 @@ export default function CreateHabit(props){
 
         setNewHabit(false)
 
-        useEffect(() => {
-            const promise = axios.post(url,{name:name,days:daysSelec},config);
-            promise.then(
-                res => setListHabits([...listHabits,res.data])   
-            )
-        },[])
+       const promise = axios.post(url,dados,config)
+       promise.then(res => console.log([...listHabits,res.data]))
         
     }
 
@@ -60,7 +59,7 @@ export default function CreateHabit(props){
                 id={l.id}/>)}
 
             </DayButtons>
-                <CancelButton>Cancelar</CancelButton>
+                <CancelButton onClick={()=> setNewHabit(false)}>Cancelar</CancelButton>
                 <SaveButton onClick={AddHabit}>Salvar</SaveButton>
             
         </Create>
@@ -136,12 +135,14 @@ const DayButtonStyled = styled.button`
         margin: 0px 2px;
 `
 
-const CancelButton = styled.span`
+const CancelButton = styled.button`
     color: #52B6FF;
     font-size: 16px;
     position: absolute;
     bottom: 23px;
     right: 123px;
+    border: none;
+    background-color: white;
 
 `
 

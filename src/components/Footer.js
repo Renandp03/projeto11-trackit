@@ -9,7 +9,7 @@ return(
     <FooterStyled>
         <div>
             <Link to="/Habitos"><span>Hábitos</span></Link>
-            <button>hoje</button>
+            <Link to="/hoje"><button>hoje</button></Link>
             <Link to="/Habitos"><span>Histórico</span></Link>
         </div>
     </FooterStyled>
@@ -49,12 +49,11 @@ const FooterStyled = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        align-self: flex-end;
         background-color: #52B6FF;
         width: 91px;
         height: 91px;
         border-radius: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 30.5px;
     }
 
 `
