@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-
+import 'dayjs/locale/es'
 import Footer from "./Footer"
 
 
 export default function HabitsToday(props){
-
-    const { infos } = props
-
-
+    
+    
     const token = infos.token
+    const { infos } = props
+    const weekDay = [
+        "dias da semana pt-br",
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sabado",
+        "Domingo"
+    ]
+    
 
+    
+    const dayjs = require("dayjs")
 
     const [ result, setResult] = useState()
 
@@ -21,6 +33,12 @@ export default function HabitsToday(props){
         }).then(res => res.json()).then(json => setResult(json));
       },[]);
 
+      
+
+      const now = new Date
+      const today = now.getDay()
+    
+
 
       if(result!== undefined){
         if(result.length > 0){
@@ -29,7 +47,7 @@ export default function HabitsToday(props){
             
             <Screen>
             <Title>
-                <h1>Segunda, 17/05</h1>
+                <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
                 <h2>Nenhum hábito concluído ainda</h2>
             </Title>
             {result.map((h)=> <Habit data={h} />)}
@@ -44,7 +62,7 @@ export default function HabitsToday(props){
                    
                     <Screen>
                     <Title>
-                        <h1>Segunda, 17/05</h1>
+                        <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
                         <h2>Nenhum hábito concluído ainda</h2>
                     </Title>
                     <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>
@@ -53,7 +71,6 @@ export default function HabitsToday(props){
                 </>
         )
         }
-        
       }
       else{
         <Text>loading</Text>
@@ -62,18 +79,14 @@ export default function HabitsToday(props){
 }
 
 
-
 function Habit(props){
 
     const {data} = props
     
-
-
     function clickDone(){
         alert("apertou")
     }
  
-
     return(
         <>
         <HabitStyle>
@@ -89,9 +102,6 @@ function Habit(props){
         </>
     )
 
-
-
-
 }
 
    const DoneButton = styled.div`
@@ -106,11 +116,6 @@ function Habit(props){
     top: 0px;
     right: 13px;
 `
-
-
-
-
-
 const HabitStyle = styled.div`
     display: flex;
     width: 340px;
@@ -138,7 +143,6 @@ const HabitStyle = styled.div`
 const Screen = styled.div`
     max-width: 400px;
 `
-
 const Title = styled.div`
     margin: 28px 0px;
     
@@ -153,14 +157,9 @@ const Title = styled.div`
         line-height: 29px;
     }
 
-`
-    
+`  
 const Text = styled.p`
     font-size: 18px;
     color: #666666;
     line-height: 22px;
 `
-
-
-
-
