@@ -6,18 +6,17 @@ import Footer from "./Footer"
 
 export default function HabitsToday(props){
     
-    
-    const token = infos.token
     const { infos } = props
+    const token = infos.token
+    
     const weekDay = [
-        "dias da semana pt-br",
+        "Domingo",
         "Segunda",
         "Terça",
         "Quarta",
         "Quinta",
         "Sexta",
-        "Sabado",
-        "Domingo"
+        "Sabado"
     ]
     
 
@@ -50,7 +49,7 @@ export default function HabitsToday(props){
                 <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
                 <h2>Nenhum hábito concluído ainda</h2>
             </Title>
-            {result.map((h)=> <Habit data={h} />)}
+            {result.map((h)=> <Habit data={h} key={h.id} />)}
             </Screen>
             <Footer/>
             </>

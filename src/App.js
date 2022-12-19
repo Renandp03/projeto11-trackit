@@ -14,9 +14,9 @@ function App() {
 
   return (
   <>
-    <GlobalStyled/>
     <BrowserRouter>
-    <Navbar infos={infos}/>
+    <GlobalStyled/>
+    <Navbar infos={infos} setInfos={setInfos}/>
       <Routes>
         <Route path="/" element={<Login setInfos={setInfos}/>}/>
         <Route path="/cadastro" element={<Registration/>}/>

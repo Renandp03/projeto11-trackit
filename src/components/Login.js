@@ -36,16 +36,18 @@ export default function Login(props){
         <img src="assets/TrackIt.png" alt=""/>
         <form onSubmit={makeLogin}>
             <input type="text"required
+            disabled={loading}
             value={email} 
             onChange={e=> setEmail(e.target.value)} 
             placeholder="email"/>
 
             <input type="password" required 
+            disabled={loading}
             value={password} 
             onChange={e=>setPassword(e.target.value)}
             placeholder="senha"/>
 
-            <button type="submit" disabled={loading}>{loading ? <img src="loading1.svg" alt="loading"/> : "Entrar" }</button>
+            <button type="submit" disabled={loading}>{loading ? <img src="assets/loading.svg" alt="loading"/> : "Entrar" }</button>
         </form>
         <Link to="/cadastro"><div>Não tem uma conta? Cadastre-se!</div></Link>
         </Screen>
@@ -68,6 +70,7 @@ const Screen = styled.div`
         border-radius: 5px;
         margin: 3px;
         color: #666666;
+        opacity: ${props=> props.loading ? "0.7" : "1"};
         background-color: ${props=> props.loading ? "#F2F2F2" : "white"};
         font-size: 20px;
         padding: 0px 11px;
@@ -87,6 +90,10 @@ const Screen = styled.div`
         border: none;
         border-radius: 5px;
         margin: 3px;
+    }
+    button img{
+        width: 40px;
+        height: 15;
     }
     div{
         color: #52B6FF;

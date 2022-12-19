@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 export default function Navbar(props){
-    const { infos } = props
+    const { infos, setInfos } = props
 
     if(infos.image!=undefined){
         return(

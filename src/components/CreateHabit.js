@@ -6,6 +6,7 @@ export default function CreateHabit(props){
 
     const {infos, listHabits, setListHabits, setNewHabit} = props
     const [name, setName] = useState("")
+    const [loading,setLoading] = useState(false)
     const token = infos.token
 
     const days = [
@@ -24,6 +25,7 @@ export default function CreateHabit(props){
     function AddHabit(){
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
+        setLoading(true)
         const dados = {name:name,days:daysSelec}
 
 
@@ -61,7 +63,7 @@ export default function CreateHabit(props){
 
             </DayButtons>
                 <CancelButton onClick={()=> setNewHabit(false)}>Cancelar</CancelButton>
-                <SaveButton onClick={AddHabit}>Salvar</SaveButton>
+                <SaveButton onClick={AddHabit}>{loading ? <img src="assets/loading.svg" alt="loading"/> : "Salvar" }</SaveButton>
             
         </Create>
     )
@@ -148,6 +150,7 @@ const CancelButton = styled.button`
 const SaveButton = styled.button`
     width: 84px;
     height: 35px;
+    opacity: ${props=> props.loading ? "0.7" : "1"};
     background: #52B6FF;
     border-radius: 5px;
     font-size: 16px;
@@ -156,5 +159,8 @@ const SaveButton = styled.button`
     position: absolute;
     bottom: 15px;
     right: 16px;
+    img{
+        width: 25px;
+    }
 `
 
