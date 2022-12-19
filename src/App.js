@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login setInfos={setInfos}/>}/>
         <Route path="/cadastro" element={<Registration/>}/>
-        <Route path="/habitos" element={<Habits/>}/>
+        <Route path="/habitos" element={<Habits infos ={infos}/>}/>
         <Route path="/hoje" element={<HabitsToday infos={infos}/>}/>
       </Routes>
     </BrowserRouter>

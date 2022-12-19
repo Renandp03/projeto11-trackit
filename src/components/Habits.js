@@ -2,25 +2,71 @@ import Navbar from "./Navbar"
 import styled from "styled-components"
 import CreateHabit from "./CreateHabit"
 import Habit from "./Habit"
+import Footer from "./Footer"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
-export default function Habits(){
-    return(
+export default function Habits(props){
+
+    const { infos } = props
+    const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+    const [listHabits, setListHabits] = useState()
+    const [newHabit, setNewHabit] = useState(false)
+
+
+
+    const config = {
+        headers:{
+            Authorization: `Bearer ${infos.token}`
+        }
+    }
+    console.log(listHabits)
+    
+    useEffect(() => {
+        const promise = axios.get(url,config);
+        promise.then(
+            res => setListHabits(res.data)
+        )
+    },[])
+
+
+    function addHabit(){
+        setNewHabit(true)
+    }
+
+
+    if(listHabits!==undefined){
+        if(listHabits.length>0){
+            return(
         <>
-            <Navbar/>
+            <Navbar infos={infos}/>
             <Screen>
-            <Title>Meus hábitos<button>+</button></Title>
-            <p>Você não tem nenhum hábito cadastrado ainda. 
-                Adicione um hábito para começar a trackear!</p>
-            <Habit/>
-            <Habit/>
-            <Habit/>
-            <Habit/>
-            <Habit/>
-            <Habit/>
+            <Title>Meus hábitos<button onClick={addHabit}>+</button></Title>
+            
+         
                 
             </Screen>
+            <Footer/>
         </>
         )
+        }
+        else{
+            return(
+                <>
+            <Navbar infos={infos}/>
+            <Screen>
+                <Title>Meus hábitos<button onClick={addHabit}>+</button></Title>
+                <p>Você não tem nenhum hábito cadastrado ainda. 
+                    Adicione um hábito para começar a trackear!</p>   
+                {newHabit && <CreateHabit infos={infos} listHabits={listHabits} setListHabits={setListHabits} setNewHabit={setNewHabit}/>}
+
+            </Screen>
+            <Footer/>
+        </>
+            )
+        }
+    }
+    
 }
 
 
@@ -32,7 +78,7 @@ const Title = styled.div`
     justify-content: space-between;
     align-items: center;
     button{
-       
+        font-size: 27px;
         font-weight: 700;
         width: 40px;
         height: 35px;

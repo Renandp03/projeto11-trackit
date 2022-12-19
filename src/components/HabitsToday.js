@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 
 export default function HabitsToday(props){
@@ -25,17 +26,41 @@ export default function HabitsToday(props){
 
 
 
-      if(result!= undefined){
-        return(
+      if(result!== undefined){
+        if(result.length > 0){
+            return(
             <>
             <Navbar infos={infos}/>
+            <Screen>
             <Title>
                 <h1>Segunda, 17/05</h1>
                 <h2>Nenhum hábito concluído ainda</h2>
             </Title>
             {result.map((h)=> <Habit data={h} />)}
+            </Screen>
+            <Footer/>
             </>
         )
+        }
+        else{
+            return(
+                <>
+                    <Navbar infos={infos}/>
+                    <Screen>
+                    <Title>
+                        <h1>Segunda, 17/05</h1>
+                        <h2>Nenhum hábito concluído ainda</h2>
+                    </Title>
+                    <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>
+                    </Screen>
+                    <Footer/>
+                </>
+        )
+        }
+        
+      }
+      else{
+        <Text>loading</Text>
       }
     
 }
@@ -101,7 +126,9 @@ function Habit(props){
 
 }
 
-
+const Screen = styled.div`
+    max-width: 400px;
+`
 
 const Title = styled.div`
     margin: 28px 0px;
@@ -119,7 +146,11 @@ const Title = styled.div`
 
 `
     
-
+const Text = styled.p`
+    font-size: 18px;
+    color: #666666;
+    line-height: 22px;
+`
 
 
 

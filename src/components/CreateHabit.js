@@ -1,24 +1,98 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function CreateHabit(){
+export default function CreateHabit(props){
+
+    const {infos, listHabits, setListHabits, setNewHabit} = props
+    const [name, setName] = useState("")
+    const token = infos.token
+
+    const days = [
+        {day:"D",id:7},
+        {day:"S",id:1},
+        {day:"T",id:2},
+        {day:"Q",id:3},
+        {day:"Q",id:4},
+        {day:"S",id:5},
+        {day:"S",id:6}
+    ]
+
+    const [daysSelec, setDaysSelec] = useState([])
+
+
+    function AddHabit(){
+        const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+
+        const config = {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        setNewHabit(false)
+
+        useEffect(() => {
+            const promise = axios.post(url,{name:name,days:daysSelec},config);
+            promise.then(
+                res => setListHabits([...listHabits,res.data])   
+            )
+        },[])
+        
+    }
+
+
+
+
     return(
         <Create>
-            <input placeholder="nome do hábito"/>
+            <input 
+            onChange={e => setName(e.target.value)} 
+            value={name} 
+            placeholder="nome do hábito"/>
             <DayButtons>
-                <DayButton>D</DayButton>
-                <DayButton>S</DayButton>
-                <DayButton>T</DayButton>
-                <DayButton>Q</DayButton>
-                <DayButton>Q</DayButton>
-                <DayButton>S</DayButton>
-                <DayButton>S</DayButton>
+                
+                {days.map((l)=> <DayButton
+                daysSelec={daysSelec} 
+                setDaysSelec={setDaysSelec} 
+                letra={l.day} 
+                key={l.id}
+                id={l.id}/>)}
+
             </DayButtons>
                 <CancelButton>Cancelar</CancelButton>
-                <SaveButton>Salvar</SaveButton>
+                <SaveButton onClick={AddHabit}>Salvar</SaveButton>
             
         </Create>
     )
 }
+
+function DayButton(props){
+
+
+    const { letra, id, daysSelec, setDaysSelec } = props
+    const [selected, setSelected] = useState(false)
+    
+
+    function click(){
+        if(selected===true){
+            setSelected(false)
+            setDaysSelec(daysSelec.filter(num => num!=id))
+            console.log(daysSelec.filter(num => num!=id))
+        }
+        else{
+            setSelected(true)
+            setDaysSelec([...daysSelec,id])
+            console.log([...daysSelec,id])
+        }
+    }
+
+
+    return(
+        <DayButtonStyled onClick={click} s={selected}>{letra}</DayButtonStyled>
+    )
+}
+
 
 const Create = styled.div`
     width: 340px;
@@ -52,13 +126,13 @@ const DayButtons = styled.div`
     display: flex;
 `
 
-const DayButton = styled.button`
-        color: #DBDBDB;
+const DayButtonStyled = styled.button`
+        color: ${props => props.s ? "white" : "#DBDBDB"};
         width:30px ;
         height:30px ;
         border: 1px solid #D4D4D4;
         border-radius: 5px;
-        background-color: white;
+        background-color: ${props => props.s ? "#CFCFCF" : "white"};
         margin: 0px 2px;
 `
 
