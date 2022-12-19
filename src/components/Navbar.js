@@ -4,14 +4,18 @@ import styled from "styled-components";
 
 export default function Navbar(props){
     const { infos } = props
-    return(
+
+    if(infos.image!=undefined){
+        return(
         <NavStyled>
             <div>
                 <Link to="/"><Logo src="assets/TrackItLogo.png" alt="logo"/></Link>
-                <Perfil src={infos!= undefined ? infos.image : "assets/TrackItPerfil.png"}/>
+                <Perfil src={infos.image}/>
             </div>
         </NavStyled>
     )
+}
+    
 }
 
 const NavStyled = styled.div`

@@ -33,10 +33,11 @@ export default function CreateHabit(props){
             }
         }
 
-        setNewHabit(false)
+       
 
        const promise = axios.post(url,dados,config)
-       promise.then(res => console.log([...listHabits,res.data]))
+       promise.then(res => setListHabits([...listHabits,res.data]))
+       promise.then(()=>  setNewHabit(false))
         
     }
 
@@ -77,12 +78,10 @@ function DayButton(props){
         if(selected===true){
             setSelected(false)
             setDaysSelec(daysSelec.filter(num => num!=id))
-            console.log(daysSelec.filter(num => num!=id))
         }
         else{
             setSelected(true)
             setDaysSelec([...daysSelec,id])
-            console.log([...daysSelec,id])
         }
     }
 

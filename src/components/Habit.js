@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 export default function Habit(props){
 
-    const {token, id, data} = props
+    const {token, data, listHabits, setListHabits} = props
 
     const name = data.name
     const days = data.days
-    console.log(data)
+    const id = data.id
 
     const weekDays = [
         {day:"D",id:7},
@@ -34,10 +34,11 @@ export default function Habit(props){
             }
         }
 
-
-        const request = axios.delete(url,data,{config})
-        request.then(()=> console.log("sucesso"))
-        request.catch(error => alert(error.response.statusText))
+        if(window.confirm("Tem certeza que deseja deletar esse hábito?")){
+        axios.delete(url,config)
+            .then(setListHabits(listHabits.filter((h)=>h.id != id)))
+            .catch(error => console.log(error))
+        }
     }
 
 

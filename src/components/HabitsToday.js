@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import Navbar from "./Navbar"
+
 import Footer from "./Footer"
 
 
@@ -26,7 +26,7 @@ export default function HabitsToday(props){
         if(result.length > 0){
             return(
             <>
-            <Navbar infos={infos}/>
+            
             <Screen>
             <Title>
                 <h1>Segunda, 17/05</h1>
@@ -41,7 +41,7 @@ export default function HabitsToday(props){
         else{
             return(
                 <>
-                    <Navbar infos={infos}/>
+                   
                     <Screen>
                     <Title>
                         <h1>Segunda, 17/05</h1>
@@ -67,6 +67,11 @@ function Habit(props){
 
     const {data} = props
     
+
+
+    function clickDone(){
+        alert("apertou")
+    }
  
 
     return(
@@ -77,7 +82,7 @@ function Habit(props){
                 <p>Sequência atual: {data.currentSequence}</p>
                 <p>Seu récord: {data.highestSequence}</p>
             </div>
-            <DoneButton>
+            <DoneButton onClick={clickDone}>
                 <img src="assets/ok.svg" />
             </DoneButton>
         </HabitStyle>

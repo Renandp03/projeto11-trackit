@@ -5,6 +5,7 @@ import Registration from "./components/Registration"
 import Habits from "./components/Habits"
 import HabitsToday from "./components/HabitsToday";
 import { useState } from "react";
+import Navbar from "./components/Navbar"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
   <>
     <GlobalStyled/>
     <BrowserRouter>
+    <Navbar infos={infos}/>
       <Routes>
         <Route path="/" element={<Login setInfos={setInfos}/>}/>
         <Route path="/cadastro" element={<Registration/>}/>

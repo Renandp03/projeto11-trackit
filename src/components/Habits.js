@@ -1,4 +1,4 @@
-import Navbar from "./Navbar"
+
 import styled from "styled-components"
 import CreateHabit from "./CreateHabit"
 import Habit from "./Habit"
@@ -20,7 +20,7 @@ export default function Habits(props){
             Authorization: `Bearer ${infos.token}`
         }
     }
-    console.log(listHabits)
+   
     
     useEffect(() => {
         const promise = axios.get(url,config);
@@ -39,11 +39,11 @@ export default function Habits(props){
         if(listHabits.length>0){
             return(
         <>
-            <Navbar infos={infos}/>
+            
             <Screen>
             <Title>Meus hábitos<button onClick={addHabit}>+</button></Title>
             
-                {listHabits.map((h)=><Habit data={h} token={infos.token} key={h.id}/>)}
+                {listHabits.map((h)=><Habit listHabits={listHabits} setListHabits={setListHabits} data={h} token={infos.token} key={h.id}/>)}
                 {newHabit && <CreateHabit infos={infos} listHabits={listHabits} setListHabits={setListHabits} setNewHabit={setNewHabit}/>}
                 
             </Screen>
@@ -54,7 +54,7 @@ export default function Habits(props){
         else{
             return(
                 <>
-            <Navbar infos={infos}/>
+            
             <Screen>
                 <Title>Meus hábitos<button onClick={addHabit}>+</button></Title>
                 <p>Você não tem nenhum hábito cadastrado ainda. 
