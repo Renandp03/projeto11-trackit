@@ -39,7 +39,7 @@ export default function Registration(){
         <input data-text="password-input" disabled={loading} type="password" required value={password} onChange={e=> setPassword(e.target.value)} placeholder="senha"/>
         <input data-text="user-name-input" disabled={loading} type="text" value={name} onChange={e=> setName(e.target.value)} placeholder="nome"/>
         <input data-text="user-image-input" disabled={loading} type="text" value={image} onChange={e=> setImage(e.target.value)}  placeholder="foto"/>
-        <button data-text="singup-btn" disabled={loading} type="submit">Entrar</button>
+        <button data-text="singup-btn" disabled={loading} type="submit">{loading ? <img src="assets/loading.svg" alt="loading"/> : "Cadastrar" }</button>
         </Form>
         <Link to="/" data-text="login-link"><div>Já tem uma conta? Faça login!</div></Link>
         </Screen>
@@ -79,6 +79,11 @@ const Screen = styled.div`
         border: none;
         border-radius: 5px;
         margin: 3px;
+    }
+    button img{
+        width: 40px;
+        height: 15;
+        margin-top: 0px;
     }
     div{
 
