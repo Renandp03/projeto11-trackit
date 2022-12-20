@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 
 
 
-export default function Footer(){
+export default function Footer(props){
 
-return(
-    <FooterStyled>
-        <div>
-            <Link to="/Habitos"><span>Hábitos</span></Link>
-            <Link to="/hoje"><button>hoje</button></Link>
-            <Link to="/Habitos"><span>Histórico</span></Link>
-        </div>
-    </FooterStyled>
-)
+    const { infos } = props
+
+    if(infos.image!=undefined){
+        return(
+            <FooterStyled>
+                <div>
+                    <Link to="/Habitos"><span>Hábitos</span></Link>
+                    <Link to="/hoje"><button>hoje</button></Link>
+                    <Link to="/Habitos"><span>Histórico</span></Link>
+                </div>
+            </FooterStyled>
+        )
+    }
 
 }
 

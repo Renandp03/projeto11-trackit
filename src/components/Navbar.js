@@ -9,7 +9,7 @@ export default function Navbar(props){
         return(
         <NavStyled>
             <div>
-                <Link to="/"><Logo src="assets/TrackItLogo.png" alt="logo"/></Link>
+                <Link to="/"><Logo onClick={()=>setInfos([])} src="assets/TrackItLogo.png" alt="logo"/></Link>
                 <Perfil src={infos.image}/>
             </div>
         </NavStyled>

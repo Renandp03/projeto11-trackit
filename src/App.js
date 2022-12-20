@@ -6,11 +6,11 @@ import Habits from "./components/Habits"
 import HabitsToday from "./components/HabitsToday";
 import { useState } from "react";
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer";
 
 function App() {
 
   const [infos, setInfos] = useState([])
-
 
   return (
   <>
@@ -23,6 +23,7 @@ function App() {
         <Route path="/habitos" element={<Habits infos ={infos}/>}/>
         <Route path="/hoje" element={<HabitsToday infos={infos}/>}/>
       </Routes>
+      <Footer infos={infos}/>
     </BrowserRouter>
   </>
   );

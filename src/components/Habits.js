@@ -48,7 +48,6 @@ export default function Habits(props){
                 
                 
             </Screen>
-            <Footer/>
         </>
         )
         }
@@ -63,10 +62,13 @@ export default function Habits(props){
                 {newHabit && <CreateHabit infos={infos} listHabits={listHabits} setListHabits={setListHabits} setNewHabit={setNewHabit}/>}
 
             </Screen>
-            <Footer/>
+           
         </>
             )
         }
+    }
+    else{
+        <Screen><GifLoading src="assets/loading1.svg"/></Screen>
     }
     
 }
@@ -103,5 +105,7 @@ const Screen = styled.div`
     }
 `
 
-
+const GifLoading = styled.img`
+    width: 80px;
+`
 
