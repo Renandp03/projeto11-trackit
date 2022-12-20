@@ -27,6 +27,7 @@ export default function Login(props){
             navigate("/hoje")
         })
         request.catch(error => alert(error))
+        request.catch(()=> setLoading(false))
     }
 
 

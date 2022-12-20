@@ -9,12 +9,13 @@ export default function Registration(){
     const [ password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
 
     function createAnAccount(event){
         event.preventDefault()
-
+        setLoading(true)
         const request = axios.post(url,{
             email:email,
             name:name,
@@ -23,7 +24,10 @@ export default function Registration(){
         })
         
         request.then(()=> navigate("/"))
+        request.catch((error)=> alert(error))
+        request.catch(()=> setLoading(false))
     }
+
 
 
     return(
@@ -31,11 +35,11 @@ export default function Registration(){
         
         <img src="assets/TrackIt.png" alt=""/>
         <Form onSubmit={createAnAccount}>
-        <input data-text="email-input"  type="email" required value={email} onChange={e=> setEmail(e.target.value)}  placeholder="email"/>
-        <input data-text="password-input" type="password" required value={password} onChange={e=> setPassword(e.target.value)} placeholder="senha"/>
-        <input data-text="user-name-input" type="text" value={name} onChange={e=> setName(e.target.value)} placeholder="nome"/>
-        <input data-text="user-image-input" type="text" value={image} onChange={e=> setImage(e.target.value)}  placeholder="foto"/>
-        <button data-text="singup-btn" type="submit">Entrar</button>
+        <input data-text="email-input" disabled={loading}  type="email" required value={email} onChange={e=> setEmail(e.target.value)}  placeholder="email"/>
+        <input data-text="password-input" disabled={loading} type="password" required value={password} onChange={e=> setPassword(e.target.value)} placeholder="senha"/>
+        <input data-text="user-name-input" disabled={loading} type="text" value={name} onChange={e=> setName(e.target.value)} placeholder="nome"/>
+        <input data-text="user-image-input" disabled={loading} type="text" value={image} onChange={e=> setImage(e.target.value)}  placeholder="foto"/>
+        <button data-text="singup-btn" disabled={loading} type="submit">Entrar</button>
         </Form>
         <Link to="/" data-text="login-link"><div>Já tem uma conta? Faça login!</div></Link>
         </Screen>
