@@ -20,7 +20,7 @@ function App() {
   <>
     <BrowserRouter>
     <GlobalStyled/>
-    <Navbar infos={infos} setInfos={setInfos}/>
+    <Navbar infos={infos} setInfos={setInfos} data-text="header"/>
       <Routes>
         <Route path="/" element={<Login setInfos={setInfos}/>}/>
         <Route path="/cadastro" element={<Registration/>}/>
@@ -28,7 +28,7 @@ function App() {
         <Route path="/hoje" element={<HabitsToday infos={infos} donesUpdate={donesUpdate} setDonesUpdate={setDonesUpdate} setAllHabits={setAllHabits}/>}/>
         <Route path="/historico" element={<Historic/>}/>
       </Routes>
-      <Footer infos={infos} donesUpdate={donesUpdate} allHabits={allHabits}/>
+      <Footer infos={infos} donesUpdate={donesUpdate} allHabits={allHabits} data-text="menu"/>
     </BrowserRouter>
   </>
   );

@@ -35,21 +35,28 @@ export default function Login(props){
         
         <img src="assets/TrackIt.png" alt=""/>
         <form onSubmit={makeLogin}>
-            <input type="text"required
+            <input type="email"required
             disabled={loading}
             value={email} 
             onChange={e=> setEmail(e.target.value)} 
-            placeholder="email"/>
+            placeholder="email"
+            data-text="email-input"/>
 
             <input type="password" required 
             disabled={loading}
             value={password} 
             onChange={e=>setPassword(e.target.value)}
-            placeholder="senha"/>
+            placeholder="senha"
+            data-text="password-input"/>
 
-            <button type="submit" disabled={loading}>{loading ? <img src="assets/loading.svg" alt="loading"/> : "Entrar" }</button>
+            <button 
+            type="submit" 
+            disabled={loading}
+            data-text="login-btn">
+                {loading ? <img src="assets/loading.svg" alt="loading"/> : "Entrar" }
+            </button>
         </form>
-        <Link to="/cadastro"><div>Não tem uma conta? Cadastre-se!</div></Link>
+        <Link to="/cadastro" data-text="singup-link"><div>Não tem uma conta? Cadastre-se!</div></Link>
         </Screen>
     )
 }

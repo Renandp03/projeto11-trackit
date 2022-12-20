@@ -45,10 +45,10 @@ export default function Habit(props){
 
     return(
         <HabitStyle>
-            <h1>{name}</h1>
-            <img onClick={deletHabit} src="assets/trash.svg"/>
+            <h1 data-text="habit-name">{name}</h1>
+            <img onClick={deletHabit} data-text="habit-delete-btn" src="assets/trash.svg"/>
             <DayButtons>
-                {weekDays.map((d)=> <DayButton key={d.id} s={days.includes(d.id) && true}>{d.day}</DayButton>)}
+                {weekDays.map((d)=> <DayButton data-text="habit-day" key={d.id} s={days.includes(d.id) && true}>{d.day}</DayButton>)}
             </DayButtons>
         </HabitStyle>
     )

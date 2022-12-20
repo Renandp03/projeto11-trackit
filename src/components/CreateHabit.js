@@ -47,11 +47,12 @@ export default function CreateHabit(props){
 
 
     return(
-        <Create>
+        <Create data-text="habit-creat-container">
             <input 
             onChange={e => setName(e.target.value)} 
             value={name} 
-            placeholder="nome do hábito"/>
+            placeholder="nome do hábito"
+            data-text="habit-name-input"/>
             <DayButtons>
                 
                 {days.map((l)=> <DayButton
@@ -59,11 +60,12 @@ export default function CreateHabit(props){
                 setDaysSelec={setDaysSelec} 
                 letra={l.day} 
                 key={l.id}
-                id={l.id}/>)}
+                id={l.id}
+                data-text="habit-day"/>)}
 
             </DayButtons>
-                <CancelButton onClick={()=> setNewHabit(false)}>Cancelar</CancelButton>
-                <SaveButton onClick={AddHabit}>{loading ? <img src="assets/loading.svg" alt="loading"/> : "Salvar" }</SaveButton>
+                <CancelButton data-text="habit-creat-cancel-btn" onClick={()=> setNewHabit(false)}>Cancelar</CancelButton>
+                <SaveButton data-text="habit-creat-save-btn" onClick={AddHabit}>{loading ? <img src="assets/loading.svg" alt="loading"/> : "Salvar" }</SaveButton>
             
         </Create>
     )

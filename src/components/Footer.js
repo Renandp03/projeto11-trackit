@@ -8,18 +8,19 @@ import 'react-circular-progressbar/dist/styles.css';
 export default function Footer(props){
 
     const { infos, donesUpdate, allHabits } = props
-    if(donesUpdate!=undefined){
+    
         
     
 
-    let number = Math.ceil(((donesUpdate.length)*100)/allHabits)
-
     if(infos.image!=undefined){
+       
+        let number = Math.ceil(((donesUpdate.length)*100)/allHabits)
+
         return(
             <FooterStyled>
                 <div>
-                    <Link to="/habitos"><span>Hábitos</span></Link>
-                    <Link to="/hoje">
+                    <Link to="/habitos" data-text="habit-link"><span>Hábitos</span></Link>
+                    <Link to="/hoje" data-text="today-link">
                         <button>
                             <CircularProgressbar
                              className="CircularProgressbar-inverted"
@@ -28,13 +29,13 @@ export default function Footer(props){
                               text="Hoje"/>
                         </button>
                     </Link>
-                    <Link to="/historico"><span>Histórico</span></Link>
+                    <Link to="/historico" data-text="history-link"><span>Histórico</span></Link>
                 </div>
             </FooterStyled>
         )
     }
     }   
-}
+
 
 
 const FooterStyled = styled.div`

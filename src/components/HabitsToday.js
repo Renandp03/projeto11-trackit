@@ -55,11 +55,12 @@ export default function HabitsToday(props){
             
             <Screen>
             <Title>
-                <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
-                {donesUpdate.length===0 && <h2>Nenhum hábito concluído ainda</h2>}
-                {donesUpdate.length>0 && <h3>{number}% dos hábitos concluídos</h3>}
+                <h1 data-text="today">{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
+                {donesUpdate.length===0 && <h2 data-text="today-counter">Nenhum hábito concluído ainda</h2>}
+                {donesUpdate.length>0 && <h3 data-text="today-counter">{number}% dos hábitos concluídos</h3>}
             </Title>
             {result.map((h)=> <HabitToday 
+            data-text="today-habit-container"
             donesUpdate={donesUpdate} 
             setDonesUpdate={setDonesUpdate} 
             token={token} 
@@ -76,7 +77,7 @@ export default function HabitsToday(props){
                    
                     <Screen>
                     <Title>
-                        <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
+                        <h1 data-text="today">{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
                         <h2>Nenhum hábito concluído ainda</h2>
                     </Title>
                     <Text>Você não tem nenhum hábito cadastrado ainda.

@@ -81,11 +81,14 @@ export default function HabitToday(props){
         <>
         <HabitStyle>
             <div>
-                <h1>{data.name}</h1>
-                <p>Sequência atual: <Sequence check={check}>{currentSequence} dias</Sequence></p>
-                <p>Seu recorde: <Record record={record}>{highestSequence} dias</Record></p>
+                <h1 data-text="today-habit-name">{data.name}</h1>
+                <p data-text="today-habit-sequence">Sequência atual: <Sequence check={check}>{currentSequence} dias</Sequence></p>
+                <p data-text="today-habit-record">Seu recorde: <Record record={record}>{highestSequence} dias</Record></p>
             </div>
-            <DoneButton onClick={clickDone} check={check}>
+            <DoneButton
+            data-text="today-habit-check-btn" 
+            onClick={clickDone} 
+            check={check}>
                 <img src="assets/ok.svg" />
             </DoneButton>
         </HabitStyle>

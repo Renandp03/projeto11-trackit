@@ -44,9 +44,13 @@ export default function Habits(props){
             <Title>Meus hábitos<button onClick={addHabit}>+</button></Title>
             
             {newHabit && <CreateHabit infos={infos} listHabits={listHabits} setListHabits={setListHabits} setNewHabit={setNewHabit}/>}
-            {listHabits.map((h)=><Habit listHabits={listHabits} setListHabits={setListHabits} data={h} token={infos.token} key={h.id}/>)}
-                
-                
+            {listHabits.map((h)=><Habit 
+            data-text="habit-container" 
+            listHabits={listHabits} 
+            setListHabits={setListHabits} 
+            data={h} 
+            token={infos.token} 
+            key={h.id}/>)}
             </Screen>
         </>
         )

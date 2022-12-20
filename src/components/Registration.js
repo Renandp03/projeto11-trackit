@@ -31,13 +31,13 @@ export default function Registration(){
         
         <img src="assets/TrackIt.png" alt=""/>
         <Form onSubmit={createAnAccount}>
-        <input type="text" required value={email} onChange={e=> setEmail(e.target.value)}  placeholder="email"/>
-        <input type="password" required value={password} onChange={e=> setPassword(e.target.value)} placeholder="senha"/>
-        <input type="text" value={name} onChange={e=> setName(e.target.value)} placeholder="nome"/>
-        <input type="text" value={image} onChange={e=> setImage(e.target.value)}  placeholder="foto"/>
-        <button type="submit">Entrar</button>
+        <input data-text="email-input"  type="email" required value={email} onChange={e=> setEmail(e.target.value)}  placeholder="email"/>
+        <input data-text="password-input" type="password" required value={password} onChange={e=> setPassword(e.target.value)} placeholder="senha"/>
+        <input data-text="user-name-input" type="text" value={name} onChange={e=> setName(e.target.value)} placeholder="nome"/>
+        <input data-text="user-image-input" type="text" value={image} onChange={e=> setImage(e.target.value)}  placeholder="foto"/>
+        <button data-text="singup-btn" type="submit">Entrar</button>
         </Form>
-        <Link to="/"><div>Já tem uma conta? Faça login!</div></Link>
+        <Link to="/" data-text="login-link"><div>Já tem uma conta? Faça login!</div></Link>
         </Screen>
     )
 }
