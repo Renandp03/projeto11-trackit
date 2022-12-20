@@ -13,7 +13,8 @@ import Historic from "./components/Historic";
 function App() {
 
   const [infos, setInfos] = useState([])
-  
+  const [donesUpdate, setDonesUpdate] = useState()
+  const [allHabits, setAllHabits] = useState(0)
 
   return (
   <>
@@ -24,10 +25,10 @@ function App() {
         <Route path="/" element={<Login setInfos={setInfos}/>}/>
         <Route path="/cadastro" element={<Registration/>}/>
         <Route path="/habitos" element={<Habits infos ={infos}/>}/>
-        <Route path="/hoje" element={<HabitsToday infos={infos}/>}/>
+        <Route path="/hoje" element={<HabitsToday infos={infos} donesUpdate={donesUpdate} setDonesUpdate={setDonesUpdate} setAllHabits={setAllHabits}/>}/>
         <Route path="/historico" element={<Historic/>}/>
       </Routes>
-      <Footer infos={infos}/>
+      <Footer infos={infos} donesUpdate={donesUpdate} allHabits={allHabits}/>
     </BrowserRouter>
   </>
   );

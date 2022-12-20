@@ -7,9 +7,9 @@ import axios from "axios"
 
 export default function HabitsToday(props){
     
-    const { infos } = props
+    const { infos, donesUpdate, setDonesUpdate, setAllHabits } = props
     const token = infos.token
-    const [donesUpdate, setDonesUpdate] = useState()
+    
     
     const weekDay = [
         "Domingo",
@@ -36,6 +36,7 @@ export default function HabitsToday(props){
         const promise = axios.get(url,config)
         promise.then(res => setResult(res.data))
         promise.then(res => setDonesUpdate(res.data.filter((h)=> h.done===true)))
+        promise.then(res => setAllHabits(res.data.length))
     },[])
 
     
@@ -45,6 +46,7 @@ export default function HabitsToday(props){
 
 
       if(result!== undefined){
+        
         let number = Math.ceil(((donesUpdate.length)*100)/result.length)
         
         if(result.length > 0){
