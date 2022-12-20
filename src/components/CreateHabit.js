@@ -23,7 +23,11 @@ export default function CreateHabit(props){
 
 
     function AddHabit(){
-        const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        if(name=="" || daysSelec.length==0){
+            alert( "Todo hábito precisa ter um nome e pelo menos um dia da semana.")
+        }
+        else{
+            const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
         setLoading(true)
         const dados = {name:name,days:daysSelec}
@@ -40,6 +44,7 @@ export default function CreateHabit(props){
        const promise = axios.post(url,dados,config)
        promise.then(res => setListHabits([...listHabits,res.data]))
        promise.then(()=>  setNewHabit(false))
+        }
         
     }
 
