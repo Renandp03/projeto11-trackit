@@ -7,6 +7,7 @@ import HabitsToday from "./components/HabitsToday";
 import { useState } from "react";
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
+import Historic from "./components/Historic";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cadastro" element={<Registration/>}/>
         <Route path="/habitos" element={<Habits infos ={infos}/>}/>
         <Route path="/hoje" element={<HabitsToday infos={infos}/>}/>
+        <Route path="/historico" element={<Historic/>}/>
       </Routes>
       <Footer infos={infos}/>
     </BrowserRouter>

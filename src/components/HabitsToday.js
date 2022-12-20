@@ -32,14 +32,14 @@ export default function HabitsToday(props){
         }).then(res => res.json()).then(json => setResult(json));
       },[]);
 
-      
-
       const now = new Date
       const today = now.getDay()
     
 
 
       if(result!== undefined){
+        let dones = result.filter((h)=> h.done===true)
+        
         if(result.length > 0){
             return(
             <>
@@ -47,11 +47,12 @@ export default function HabitsToday(props){
             <Screen>
             <Title>
                 <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
-                <h2>Nenhum hábito concluído ainda</h2>
+                {dones.length===0 && <h2>Nenhum hábito concluído ainda</h2>}
+                {dones.length>0 && <h3>{Math.floor(((dones.length)*100)/result.length)}% dos hábitos concluídos</h3>}
             </Title>
             {result.map((h)=> <HabitToday token={token} data={h} key={h.id} />)}
             </Screen>
-          
+        
             </>
         )
         }
@@ -93,6 +94,11 @@ const Title = styled.div`
     h2{
         font-size: 18px;
         color: #BABABA;
+        line-height: 29px;
+    }
+    h3{
+        font-size: 18px;
+        color: #8FC549;
         line-height: 29px;
     }
 

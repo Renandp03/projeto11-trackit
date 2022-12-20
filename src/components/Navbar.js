@@ -47,4 +47,5 @@ const Perfil = styled.img`
     width: 51px;
     height: 51px;
     border-radius: 100%;
+    object-fit: cover;
 `

@@ -11,9 +11,9 @@ export default function Footer(props){
         return(
             <FooterStyled>
                 <div>
-                    <Link to="/Habitos"><span>Hábitos</span></Link>
+                    <Link to="/habitos"><span>Hábitos</span></Link>
                     <Link to="/hoje"><button>hoje</button></Link>
-                    <Link to="/Habitos"><span>Histórico</span></Link>
+                    <Link to="/historico"><span>Histórico</span></Link>
                 </div>
             </FooterStyled>
         )
