@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import 'dayjs/locale/es'
 import HabitToday from "./HabitToday"
+import axios from "axios"
 
 
 export default function HabitsToday(props){
     
     const { infos } = props
     const token = infos.token
+    const [donesUpdate, setDonesUpdate] = useState()
     
     const weekDay = [
         "Domingo",
@@ -19,26 +21,31 @@ export default function HabitsToday(props){
         "Sabado"
     ]
     
-
+    
     
     const dayjs = require("dayjs")
 
     const [ result, setResult] = useState()
+    const config = { 
+        headers:{
+        Authorization: `Bearer ${token}`
+    }
+}
+    const url = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today'
+    useEffect(()=> {
+        const promise = axios.get(url,config)
+        promise.then(res => setResult(res.data))
+        promise.then(res => setDonesUpdate(res.data.filter((h)=> h.done===true)))
+    },[])
 
-    useEffect(()=>{
-        fetch('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', {
-          method: "GET",
-          headers: {"Authorization": `Bearer ${token}`}
-        }).then(res => res.json()).then(json => setResult(json));
-      },[]);
-
+    
       const now = new Date
       const today = now.getDay()
     
 
 
       if(result!== undefined){
-        let dones = result.filter((h)=> h.done===true)
+        let number = Math.ceil(((donesUpdate.length)*100)/result.length)
         
         if(result.length > 0){
             return(
@@ -47,10 +54,15 @@ export default function HabitsToday(props){
             <Screen>
             <Title>
                 <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
-                {dones.length===0 && <h2>Nenhum hábito concluído ainda</h2>}
-                {dones.length>0 && <h3>{Math.floor(((dones.length)*100)/result.length)}% dos hábitos concluídos</h3>}
+                {donesUpdate.length===0 && <h2>Nenhum hábito concluído ainda</h2>}
+                {donesUpdate.length>0 && <h3>{number}% dos hábitos concluídos</h3>}
             </Title>
-            {result.map((h)=> <HabitToday token={token} data={h} key={h.id} />)}
+            {result.map((h)=> <HabitToday 
+            donesUpdate={donesUpdate} 
+            setDonesUpdate={setDonesUpdate} 
+            token={token} 
+            data={h} 
+            key={h.id} />)}
             </Screen>
         
             </>
@@ -65,7 +77,8 @@ export default function HabitsToday(props){
                         <h1>{weekDay[today]}, {dayjs().format("DD/MM")}</h1>
                         <h2>Nenhum hábito concluído ainda</h2>
                     </Title>
-                    <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>
+                    <Text>Você não tem nenhum hábito cadastrado ainda.
+                         Adicione um hábito para começar a trackear!</Text>
                     </Screen>
                   
                 </>

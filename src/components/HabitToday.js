@@ -7,7 +7,7 @@ import styled from "styled-components"
 
 export default function HabitToday(props){
 
-    const {data, token,} = props
+    const {donesUpdate, setDonesUpdate, data, token,} = props
     
     const [check,setCheck] = useState(data.done)
 
@@ -26,6 +26,7 @@ export default function HabitToday(props){
 
 
     function doneFunction(){
+        setDonesUpdate([...donesUpdate,data])
         if(currentSequence+1 > highestSequence){
             setCurrentSequence(currentSequence+1)
             setHighestSequence(highestSequence+1)
@@ -38,6 +39,7 @@ export default function HabitToday(props){
     }
 
     function notDoneFunction(){
+        setDonesUpdate(donesUpdate.filter((h)=> h != data))
         if(currentSequence === highestSequence && record === true){
             setCurrentSequence(currentSequence-1)
             setHighestSequence(highestSequence-1)
@@ -96,7 +98,7 @@ export default function HabitToday(props){
 const HabitStyle = styled.div`
     display: flex;
     width: 340px;
-    height: 94px;
+    min-height: 94px;
     background: #FFFFFF;
     border-radius: 5px;
     position: relative;
@@ -106,6 +108,7 @@ const HabitStyle = styled.div`
         margin: 13px 0px 17px 15px;
     }
     h1{
+        max-width: 210px;
         font-size: 20px;
         color: #666666;
         line-height: 25px;

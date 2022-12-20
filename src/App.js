@@ -9,9 +9,11 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
 import Historic from "./components/Historic";
 
+
 function App() {
 
   const [infos, setInfos] = useState([])
+  
 
   return (
   <>
